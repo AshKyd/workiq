@@ -1,8 +1,26 @@
 {
   "name": "workiq",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "main": "./lib/index.js",
+  "description": "A fast, promise-based queue & communication layer for web workers.",
+  "keywords": [
+    "worker",
+    "web worker"
+  ],
+  "homepage": "https://github.com/AshKyd/workiq#readme",
+  "repository": "github:AshKyd/workiq",
+  "bugs": {
+    "url": "https://github.com/AshKyd/workiq/issues",
+    "email": "ash@kyd.com.au"
+  },
+  "author": {
+    "name": "Ash Kyd",
+    "email": "ash@kyd.com.au",
+    "url": "https://ash.ms/"
+  },
+  "license": "ISC",
   "scripts": {
     "start": "vite",
     "build": "vite build",
@@ -10,5 +28,10 @@
   },
   "devDependencies": {
     "vite": "^5.4.10"
-  }
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ]
 }
