@@ -9,7 +9,10 @@
     "web worker"
   ],
   "homepage": "https://github.com/AshKyd/workiq#readme",
-  "repository": "github:AshKyd/workiq",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshKyd/workiq.git"
+  },
   "bugs": {
     "url": "https://github.com/AshKyd/workiq/issues",
     "email": "ash@kyd.com.au"
