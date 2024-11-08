@@ -1,7 +1,7 @@
 {
   "name": "workiq",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "./lib/index.js",
   "description": "A fast, promise-based queue & communication layer for web workers.",
