@@ -11,4 +11,4 @@ const workers = Array.from({
 );
 
 const client = new WorkerHost({ workers, logLevel: "debug" });
-client.push("pi", {}).then((pi) => console.log("got pi", pi));
+client.push("getPi", {}).then((pi) => console.log("got pi", pi));
