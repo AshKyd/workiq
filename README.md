@@ -13,7 +13,7 @@ In your worker, set up as many functions as you require. Functions should accept
 ```js
 import WorkerClient from "workiq";
 
-const getPi = async () => Math.PI;
+const getPi = async () => [Math.PI];
 
 const workerClient = new WorkerClient({ getPi });
 ```
@@ -39,6 +39,38 @@ import WorkerHost from "workiq";
 const client = new WorkerHost({ workers, logLevel: "debug" });
 client.push("getPi", {}).then((pi) => console.log(`Got pi: ${pi}`));
 ```
+
+## Transferrable objects
+
+You may have noticed that the return value from `getPi` returns its value in an object. This is because functions may also return a second value containing an array of [transferrable objects](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects).
+
+You can transfer any type of transferrable objects, including ArrayBuffers, OffscreenCanvas etc. See the full list of [supported transferrable objects](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects#supported_objects).
+
+Consider the following examples:
+
+```js
+const uInt8Array = new Uint8Array(1024 * 1024 * 8).map((v, i) => i);
+
+// transfer the array to the worker & get a new one in return.
+const newUInt8Array = await client.push("manipulateArray", uInt8Array, {
+  transferList: [uInt8Array],
+});
+```
+
+And to transfer an object back:
+
+```js
+const manipulateArray = async (uInt8Array) => {
+  // do something to the array
+
+  // then return it as both the return value, and in the transferList
+  return [uInt8Array, [uInt8Array]];
+};
+
+const workerClient = new WorkerClient({ manipulateArray });
+```
+
+Note that in these examples `uInt8Array` will not be transferred until a worker becomes free to take the job. If you try to access it after calling `client.push` you will hit race conditions. So it's best to treat it as alredy transferred.
 
 ## Development
 
