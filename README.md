@@ -4,7 +4,7 @@ A fast, promise-based queue & communication layer for web workers.
 
 This library provides a `WorkerClient` for use inside a web worker, and `WorkerHost` for managing many web workers. Jobs are added to the queue and sent to the next available worker.
 
-This library is in early development and doesn't yet implement things like cancelling jobs and transferrable data. However it is a good layer for simple worker communication.
+This library is in early development and doesn't yet implement everything yet. However it is a good layer for simple worker communication.
 
 ## Usage
 
