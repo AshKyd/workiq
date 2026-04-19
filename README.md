@@ -8,12 +8,14 @@ This library is in early development and doesn't yet implement everything yet. H
 
 ## Usage
 
-In your worker, set up as many functions as you require. Functions should accept one object as a parameter and must be async/return a promise. Objects can contain simple data types such as strings, booleans, objects, numbers, arrays, and can return any of the same.
+In your worker, set up as many functions as you require. Functions should accept one object as a parameter and must be async/return a promise.
+
+Functions must return an array containing two elements: `[responsePayload, transferList]`. The `transferList` can be an empty array `[]` if no objects are being transferred.
 
 ```js
-import WorkerClient from "workiq";
+import { WorkerClient } from "workiq";
 
-const getPi = async () => [Math.PI];
+const getPi = async () => [Math.PI, []];
 
 const workerClient = new WorkerClient({ getPi });
 ```
@@ -27,7 +29,7 @@ const workers = Array.from({
   () =>
     new Worker(new URL("./demoworker.js", import.meta.url), {
       type: "module",
-    })
+    }),
 );
 ```
 
