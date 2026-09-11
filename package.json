@@ -1,6 +1,6 @@
 {
   "name": "workiq",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "main": "./lib/index.js",
   "description": "A fast, promise-based queue & communication layer for web workers.",
@@ -26,7 +26,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test \"lib/**/*.test.js\""
   },
   "devDependencies": {
     "vite": "^5.4.10"
